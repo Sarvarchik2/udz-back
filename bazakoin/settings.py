@@ -31,7 +31,7 @@ SECRET_KEY = "django-insecure-^8-82dou@e0x$1sw(=&bl*h4eebejfenacb*hx__jn(yuaodew
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['91.222.236.88', 'new.udz.uz']
 
 
 # Application definition
@@ -44,12 +44,27 @@ INSTALLED_APPS = [
     "corsheaders",
     "home",
     "rest_framework",
-    "ckeditor",
-    "ckeditor_uploader",
+   'ckeditor',
     "django.contrib.messages",
     "django.contrib.staticfiles",
 ]
-
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-',
+             'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-',
+             'Blockquote', 'CreateDiv', '-'],
+            ['Link', 'Unlink', 'Anchor'],
+            ['Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak'],
+            ['Styles', 'Format', 'Font', 'FontSize', 'TextColor', 'BGColor'],
+            ['Maximize', 'ShowBlocks', '-', 'Undo', 'Redo', '-', 'Source'],
+        ],
+        'height': 300,
+        'width': '100%',
+    },
+}
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -104,7 +119,10 @@ CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
+    'http://127.0.0.1',
+
 ]
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

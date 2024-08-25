@@ -6,7 +6,6 @@ from .models import (
     DavlatRamzlar,
     Product,
     ProductInfo,
-    Application,
     Document,
     Deal,
     Image,
@@ -40,7 +39,12 @@ from .models import (
     OchiqMalumotlar,
     KopKelganSavollargaJavoblar,
 )
+from .models import Application
 
+class ApplicationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Application
+        fields = '__all__'
 
 class SaytHaritasiSerializer(serializers.ModelSerializer):
     class Meta:
@@ -315,10 +319,7 @@ class DealSerializer(serializers.ModelSerializer):
         ]
 
 
-class ApplicationSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Application
-        fields = ["id", "first_name", "last_name", "phone_number"]
+
 
 
 # class ProductInfoSerializer(serializers.ModelSerializer):

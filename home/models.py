@@ -2,6 +2,40 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
+from django.utils.text import slugify
+from django.urls import reverse
+class Application(models.Model):
+    full_name = models.CharField(max_length=255)
+    phone_number = models.CharField(max_length=20)
+    email = models.EmailField(default='default_value')
+    subject = models.CharField(max_length=255)
+    application_type = models.CharField(max_length=50, default='default_value')
+    message = models.TextField(default="")
+    created_at = models.DateTimeField(auto_now_add=True)
+    file = models.FileField(upload_to='applications/', null=True, blank=True)  # Добавьте это поле
+
+    def __str__(self):
+        return self.subject
+
+
+class UploadedFile(models.Model):
+    file = models.FileField(upload_to='uploads/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+    slug = models.SlugField(max_length=255, unique=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.file.name)
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.file.name
+
+    def get_absolute_url(self):
+        return reverse('file_detail', kwargs={'slug': self.slug})
+
+    def get_file_url(self, request):
+        return request.build_absolute_uri(self.file.url)
 
 class Tenderlar(models.Model):
     STATUS_CHOICES = (
@@ -371,23 +405,6 @@ class Document(models.Model):
         return self.title_en
 
 
-class Application(models.Model):
-    first_name = models.CharField(
-        _("Ismi"), max_length=100, default="Default First Name"
-    )
-    last_name = models.CharField(
-        _("Sharifi"), max_length=100, default="Default Last Name"
-    )
-    phone_number = models.CharField(
-        _("Telefon raqami"), max_length=20, default="Default Phone Number"
-    )
-
-    class Meta:
-        verbose_name = _("Boglanish")
-        verbose_name_plural = _("Boglanish")
-
-    def __str__(self):
-        return f"{self.first_name} {self.last_name}"
 
 
 class Person(models.Model):

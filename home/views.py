@@ -33,8 +33,20 @@ from .serializers import (
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from django.views.generic import TemplateView
+from django.views.generic import DetailView
+from .models import UploadedFile
+class FileDetailView(DetailView):
+    model = UploadedFile
+    template_name = 'file_detail.html'
+    context_object_name = 'file'
 
-from rest_framework import viewsets
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['full_url'] = self.object.get_file_url(self.request)
+        return context
+
+
+
 from .models import News
 from rest_framework import viewsets
 from .models import (
@@ -56,6 +68,13 @@ from .models import (
     Tenderlar,
     DavlatRamzlar,
 )
+
+from .models import Application
+from .serializers import ApplicationSerializer
+
+class ApplicationViewSet(viewsets.ModelViewSet):
+    queryset = Application.objects.all()
+    serializer_class = ApplicationSerializer
 from .serializers import (
     ElektronHukumatDoirasidaAmalgaOshirilayotganLoyihalarSerializer,
     DavlatTashkilotlariSerializer,

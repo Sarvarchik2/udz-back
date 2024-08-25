@@ -13,8 +13,27 @@ from .models import (
     ProductInfo,
 )
 from ckeditor.widgets import CKEditorWidget
+
 from django.db import models
 from django.utils.safestring import mark_safe
+from .models import UploadedFile
+@admin.register(UploadedFile)
+class UploadedFileAdmin(admin.ModelAdmin):
+    list_display = ('file', 'uploaded_at', 'slug')
+    readonly_fields = ('slug',)
+
+    def get_readonly_fields(self, request, obj=None):
+        return super().get_readonly_fields(request, obj) + ('get_file_url',)
+
+    def get_file_url(self, obj):
+        # Используем `request` для создания полного URL
+        if obj and hasattr(obj, 'file'):
+            return obj.file.url
+        return 'URL not available'
+
+    def response_change(self, request, obj):
+        # Перенаправляем после сохранения обратно на страницу с объектом
+        return super().response_change(request, obj)
 
 
 class EmployeeAdmin(admin.ModelAdmin):
@@ -51,7 +70,7 @@ class TenderlarAdmin(admin.ModelAdmin):
     formfield_overrides = {models.TextField: {"widget": CKEditorWidget}}
 
 
-from ckeditor.widgets import CKEditorWidget
+
 from .models import (
     ElektronHukumatDoirasidaAmalgaOshirilayotganLoyihalar,
     DavlatTashkilotlari,
@@ -137,6 +156,7 @@ class NewsAdmin(admin.ModelAdmin):
     search_fields = ("title_en", "title_ru", "title_uz")
 
 
+
 class ProductAdmin(admin.ModelAdmin):
     list_display = [
         "name_en",
@@ -176,20 +196,13 @@ class ProductInfoAdmin(admin.ModelAdmin):
 class InteraktivXizmatAdmin(admin.ModelAdmin):
     list_display = ("title_en", "title_ru", "title_uz", "url", "views")
 
-
 @admin.register(Application)
 class ApplicationAdmin(admin.ModelAdmin):
-    list_display = ("first_name", "last_name", "phone_number")
-
+    list_display = ('full_name', 'phone_number', 'email', 'subject', 'application_type', 'created_at')
+    search_fields = ('full_name', 'email', 'subject')
+    list_filter = ('application_type', 'created_at')
 
 @admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
     list_display = ("title_en", "title_ru", "title_uz", "image")
 
-
-# admin.site.register(Employee, EmployeeAdmin)
-# admin.site.register(Logo, LogoAdmin)
-# admin.site.register(Document, DocumentAdmin)
-# admin.site.register(Product, ProductAdmin)
-# admin.site.register(ProductInfo, ProductInfoAdmin)
-# admin.site.register(News, NewsAdmin)

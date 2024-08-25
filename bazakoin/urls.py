@@ -5,7 +5,7 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
-
+from home.views import FileDetailView
 from home.views import (
     ElektronHukumatDoirasidaAmalgaOshirilayotganLoyihalarViewSet,
     DavlatTashkilotlariViewSet,
@@ -31,7 +31,11 @@ from home.views import (
     KopKelganSavollargaJavoblarViewSet,
 )
 
+
+
+from home.views import ApplicationViewSet
 router = DefaultRouter()
+router.register(r'applications', ApplicationViewSet)
 router.register(r"sayt-haritasi", SaytHaritasiViewSet)
 router.register(r"harakatlar-strategiyasi", HarakatlarStrategiyasiViewSet)
 router.register(r"qonunchilik-bazasi", QonunchilikBazasiViewSet)
@@ -75,8 +79,6 @@ router.register(r"product-info", views.ProductInfoViewSet)
 router.register(r"persons", views.PersonViewSet)
 router.register(r"news", views.NewsViewSet)
 router.register(r"deals", views.DealViewSet)
-# router.register(r'slider-images', views.SliderImageViewSet)
-# router.register(r'second-slider-images', views.SecondSliderImageViewSet)
 router.register(r"documents", views.DocumentViewSet)
 router.register(r"images", views.ImageViewSet)
 router.register(r"logos", views.LogoViewSet)
@@ -85,6 +87,8 @@ router.register(r"vazirlik", views.VazirlikViewSet)
 router.register(r"interaktiv", views.InteraktivXizmatViewSet)
 
 urlpatterns = [
+   path('files/<slug:slug>/', FileDetailView.as_view(), name='file_detail'),
+
     path("", include(router.urls)),
     path(
         "interaktiv-xizmatlar/",
@@ -106,6 +110,7 @@ urlpatterns = [
         views.InteraktivXizmatViewSet.as_view({"post": "increment_views"}),
         name="interaktiv-increment-views",
     ),
+    path('tinymce/', include('tinymce.urls')),
     path(
         "applications/",
         views.ApplicationListCreate.as_view(),
