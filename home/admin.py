@@ -140,6 +140,28 @@ class LogoAdmin(admin.ModelAdmin):
     list_display = ("link", "text_en", "text_ru", "text_uz")
 
 
+
+from .models import Korupsiya
+
+@admin.register(Korupsiya)
+class KorupsiyaAdmin(admin.ModelAdmin):
+    list_display = ('title', 'created_at')
+
+    class Meta:
+        verbose_name = "Korupsiyaga qarshi kurashish"
+        verbose_name_plural = "Korupsiyaga qarshi kurashish"
+
+from .models import VideoLink
+
+@admin.register(VideoLink)
+class VidelinkAdmin(admin.ModelAdmin):
+    list_display = ("link", 'image')
+
+    class Meta:
+        verbose_name = "Video yuklash"
+        verbose_name_plural = "Video yuklash"
+
+
 class DocumentAdmin(admin.ModelAdmin):
     list_display = ["id", "title_en", "title_ru", "title_uz"]
     search_fields = ["title_en", "title_ru", "title_uz"]

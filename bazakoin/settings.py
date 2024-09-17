@@ -37,6 +37,7 @@ ALLOWED_HOSTS = ['91.222.236.88', 'new.udz.uz']
 # Application definition
 
 INSTALLED_APPS = [
+    'grappelli',
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",

@@ -157,7 +157,11 @@ class ElektronHukumatDoirasidaAmalgaOshirilayotganLoyihalarViewSet(
 class DavlatTashkilotlariViewSet(viewsets.ModelViewSet):
     queryset = DavlatTashkilotlari.objects.all()
     serializer_class = DavlatTashkilotlariSerializer
-
+from .serializers import VideoLinkserializer
+from .models import VideoLink
+class VideoLinkViewSet(viewsets.ModelViewSet):
+    queryset = VideoLink.objects.all()
+    serializer_class = VideoLinkserializer
 
 class TenderlarViewSet(viewsets.ModelViewSet):
     queryset = Tenderlar.objects.all()
@@ -170,6 +174,13 @@ class TenderlarViewSet(viewsets.ModelViewSet):
         tenderlar.save()
         return Response({"status": "views incremented", "views": tenderlar.views})
 
+from rest_framework import generics
+from .models import Korupsiya
+from .serializers import KorupsiyaSerializer
+
+class KorupsiyaListView(generics.ListAPIView):
+    queryset = Korupsiya.objects.all()
+    serializer_class = KorupsiyaSerializer
 
 class MurojaatlarniKoribchiqishTartibiViewSet(viewsets.ModelViewSet):
     queryset = MurojaatlarniKoribchiqishTartibi.objects.all()

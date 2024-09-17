@@ -45,53 +45,90 @@ class ApplicationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Application
         fields = '__all__'
+from .models import Korupsiya
+
+class KorupsiyaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Korupsiya
+        fields = ['id', 'title', 'description', 'image', 'pdf_file', 'pdf_online_link', 'download_link', 'created_at']
+
+from .models import VideoLink
+
+class VideoLinkserializer(serializers.ModelSerializer):
+    class Meta:
+        model = VideoLink
+        fields = "__all__"
 
 class SaytHaritasiSerializer(serializers.ModelSerializer):
     class Meta:
         model = SaytHaritasi
-        fields = ["id", "text_en", "text_ru", "text_uz"]
+        fields = ["id", "text_en", "text_ru", "text_uz","pdflink1",
+            "pdflink2",
+            "pdflink3",
+            "pdflink4",]
 
 
 class HarakatlarStrategiyasiSerializer(serializers.ModelSerializer):
     class Meta:
         model = HarakatlarStrategiyasi
-        fields = ["id", "text_en", "text_ru", "text_uz"]
+        fields = ["id", "text_en", "text_ru", "text_uz","pdflink1",
+            "pdflink2",
+            "pdflink3",
+            "pdflink4",]
 
 
 class QonunchilikBazasiSerializer(serializers.ModelSerializer):
     class Meta:
         model = QonunchilikBazasi
-        fields = ["id", "text_en", "text_ru", "text_uz"]
+        fields = ["id", "text_en", "text_ru", "text_uz","pdflink1",
+            "pdflink2",
+            "pdflink3",
+            "pdflink4",]
 
 
 class BoshIshJoylariSerializer(serializers.ModelSerializer):
     class Meta:
         model = BoshIshJoylari
-        fields = ["id", "text_en", "text_ru", "text_uz"]
+        fields = ["id", "text_en", "text_ru", "text_uz","pdflink1",
+            "pdflink2",
+            "pdflink3",
+            "pdflink4",]
 
 
 class OchiqMalumotlarSerializer(serializers.ModelSerializer):
     class Meta:
         model = OchiqMalumotlar
-        fields = ["id", "text_en", "text_ru", "text_uz"]
+        fields = ["id", "text_en", "text_ru", "text_uz","pdflink1",
+            "pdflink2",
+            "pdflink3",
+            "pdflink4",]
 
 
 class KopKelganSavollargaJavoblarSerializer(serializers.ModelSerializer):
     class Meta:
         model = KopKelganSavollargaJavoblar
-        fields = ["id", "text_en", "text_ru", "text_uz"]
+        fields = ["id", "text_en", "text_ru", "text_uz","pdflink1",
+            "pdflink2",
+            "pdflink3",
+            "pdflink4",]
 
 
 class DavlatRamzlariSerializer(serializers.ModelSerializer):
     class Meta:
         model = DavlatRamzlar
-        fields = ["id", "text_en", "text_ru", "text_uz"]
+        fields = ["id", "text_en", "text_ru", "text_uz","pdflink1",
+            "pdflink2",
+            "pdflink3",
+            "pdflink4",]
 
 
 class KorsatkichlarSerializer(serializers.ModelSerializer):
     class Meta:
         model = Korsatkichlar
-        fields = ["id", "text_en", "text_ru", "text_uz"]
+        fields = ["id", "text_en", "text_ru", "text_uz","pdflink1",
+            "pdflink2",
+            "pdflink3",
+            "pdflink4",]
 
 
 class TenderlarSerializer(serializers.ModelSerializer):
@@ -105,31 +142,52 @@ class TenderlarSerializer(serializers.ModelSerializer):
             "title_uz",
             "title_ru",
             "title_en",
+            "pdflink1",
+            "pdflink2",
+            "pdflink3",
+            "pdflink4",
+            "pdflink5",
+            "pdflink6",
+            "pdflink7",
+            "pdflink8",
+            "pdflink9",
+            "pdflink10",
+            "pdflink11",
+            "pdflink12",
             "start_date",
             "end_date",
             "views",
             "status",
         ]
 
-
+# 222222
 class GenderTenglikkaOidMeyoriyHujjatlarniIshlabChiqishSerializer(
     serializers.ModelSerializer
 ):
     class Meta:
         model = GenderTenglikkaOidMeyoriyHujjatlarniIshlabChiqish
-        fields = ["id", "text_en", "text_ru", "text_uz"]
+        fields = ["id", "text_en", "text_ru", "text_uz","pdflink1",
+            "pdflink2",
+            "pdflink3",
+            "pdflink4",]
 
 
 class VazirlikdaGenderSiyosatiSerializer(serializers.ModelSerializer):
     class Meta:
         model = VazirlikdaGenderSiyosati
-        fields = ["id", "text_en", "text_ru", "text_uz"]
+        fields = ["id", "text_en", "text_ru", "text_uz","pdflink1",
+            "pdflink2",
+            "pdflink3",
+            "pdflink4",]
 
 
 class MeyoriyHujjatlarSerializer(serializers.ModelSerializer):
     class Meta:
         model = MeyoriyHujjatlar
-        fields = ["id", "text_en", "text_ru", "text_uz"]
+        fields = ["id", "text_en", "text_ru", "text_uz","pdflink1",
+            "pdflink2",
+            "pdflink3",
+            "pdflink4",]
 
 
 class ElektronHukumatDoirasidaAmalgaOshirilayotganLoyihalarSerializer(
@@ -137,37 +195,55 @@ class ElektronHukumatDoirasidaAmalgaOshirilayotganLoyihalarSerializer(
 ):
     class Meta:
         model = ElektronHukumatDoirasidaAmalgaOshirilayotganLoyihalar
-        fields = ["id", "text_en", "text_ru", "text_uz"]
+        fields = ["id", "text_en", "text_ru", "text_uz","pdflink1",
+            "pdflink2",
+            "pdflink3",
+            "pdflink4",]
 
 
 class MeyorVazirlikdaGenderSiyosatiiyHujjatlarSerializer(serializers.ModelSerializer):
     class Meta:
         model = MeyorVazirlikdaGenderSiyosatiiyHujjatlar
-        fields = ["id", "text_en", "text_ru", "text_uz"]
+        fields = ["id", "text_en", "text_ru", "text_uz","pdflink1",
+            "pdflink2",
+            "pdflink3",
+            "pdflink4",]
 
 
 class DavlatTashkilotlariSerializer(serializers.ModelSerializer):
     class Meta:
         model = DavlatTashkilotlari
-        fields = ["id", "text_en", "text_ru", "text_uz"]
+        fields = ["id", "text_en", "text_ru", "text_uz","pdflink1",
+            "pdflink2",
+            "pdflink3",
+            "pdflink4",]
 
 
 class MurojaatlarniKoribchiqishTartibiSerializer(serializers.ModelSerializer):
     class Meta:
         model = MurojaatlarniKoribchiqishTartibi
-        fields = ["id", "text_en", "text_ru", "text_uz"]
+        fields = ["id", "text_en", "text_ru", "text_uz","pdflink1",
+            "pdflink2",
+            "pdflink3",
+            "pdflink4",]
 
 
 class MurojaatlarStatistikasiSerializer(serializers.ModelSerializer):
     class Meta:
         model = MurojaatlarStatistikasi
-        fields = ["id", "text_en", "text_ru", "text_uz"]
+        fields = ["id", "text_en", "text_ru", "text_uz","pdflink1",
+            "pdflink2",
+            "pdflink3",
+            "pdflink4",]
 
 
 class IshonchTelefoniReglamentiSerializer(serializers.ModelSerializer):
     class Meta:
         model = IshonchTelefoniReglamenti
-        fields = ["id", "text_en", "text_ru", "text_uz"]
+        fields = ["id", "text_en", "text_ru", "text_uz","pdflink1",
+            "pdflink2",
+            "pdflink3",
+            "pdflink4",]
 
 
 class LogistikaSamaradorligiIndeksiBoyichaOchiqMalumotlarSerializer(
@@ -175,19 +251,28 @@ class LogistikaSamaradorligiIndeksiBoyichaOchiqMalumotlarSerializer(
 ):
     class Meta:
         model = LogistikaSamaradorligiIndeksiBoyichaOchiqMalumotlar
-        fields = ["id", "text_en", "text_ru", "text_uz"]
+        fields = ["id", "text_en", "text_ru", "text_uz","pdflink1",
+            "pdflink2",
+            "pdflink3",
+            "pdflink4",]
 
 
 class YoshlarSiyosatiSerializer(serializers.ModelSerializer):
     class Meta:
         model = YoshlarSiyosati
-        fields = ["id", "text_en", "text_ru", "text_uz"]
+        fields = ["id", "text_en", "text_ru", "text_uz","pdflink1",
+            "pdflink2",
+            "pdflink3",
+            "pdflink4",]
 
 
 class YoshlarMarkaziYangiliklariSerializer(serializers.ModelSerializer):
     class Meta:
         model = YoshlarMarkaziYangiliklari
-        fields = ["id", "text_en", "text_ru", "text_uz"]
+        fields = ["id", "text_en", "text_ru", "text_uz","pdflink1",
+            "pdflink2",
+            "pdflink3",
+            "pdflink4",]
 
 
 class YoshlarSiyosatigaOidMeyoriyHuquqiyHujjatlarSerializer(
@@ -195,19 +280,28 @@ class YoshlarSiyosatigaOidMeyoriyHuquqiyHujjatlarSerializer(
 ):
     class Meta:
         model = YoshlarSiyosatigaOidMeyoriyHuquqiyHujjatlar
-        fields = ["id", "text_en", "text_ru", "text_uz"]
+        fields = ["id", "text_en", "text_ru", "text_uz","pdflink1",
+            "pdflink2",
+            "pdflink3",
+            "pdflink4",]
 
 
 class UmumiyMalumotlarSerializer(serializers.ModelSerializer):
     class Meta:
         model = UmumiyMalumotlar
-        fields = ["id", "text_en", "text_ru", "text_uz"]
+        fields = ["id", "text_en", "text_ru", "text_uz","pdflink1",
+            "pdflink2",
+            "pdflink3",
+            "pdflink4",]
 
 
 class GenderTenglikAsosiyInsonHuquqlaridanBiriSerializer(serializers.ModelSerializer):
     class Meta:
         model = GenderTenglikAsosiyInsonHuquqlaridanBiri
-        fields = ["id", "text_en", "text_ru", "text_uz"]
+        fields = ["id", "text_en", "text_ru", "text_uz","pdflink1",
+            "pdflink2",
+            "pdflink3",
+            "pdflink4",]
 
 
 class YurtimizdaGenderTenglikniTaminlashStrategiyasiSerializer(
@@ -215,13 +309,19 @@ class YurtimizdaGenderTenglikniTaminlashStrategiyasiSerializer(
 ):
     class Meta:
         model = YurtimizdaGenderTenglikniTaminlashStrategiyasi
-        fields = ["id", "text_en", "text_ru", "text_uz"]
-
+        fields = ["id", "text_en", "text_ru", "text_uz","pdflink1",
+            "pdflink2",
+            "pdflink3",
+            "pdflink4",]
+# 22222222
 
 class InteraktivXizmatSerializer(serializers.ModelSerializer):
     class Meta:
         model = InteraktivXizmat
-        fields = ["id", "title_en", "title_ru", "title_uz", "url", "views"]
+        fields = ["id", "title_en", "title_ru", "title_uz", "url", "views","pdflink1",
+            "pdflink2",
+            "pdflink3",
+            "pdflink4",]
 
 
 class VazirlikSerializer(serializers.ModelSerializer):
@@ -234,7 +334,10 @@ class VazirlikSerializer(serializers.ModelSerializer):
             "title_uz",
             "text_en",
             "text_ru",
-            "text_uz",
+            "text_uz","pdflink1",
+            "pdflink2",
+            "pdflink3",
+            "pdflink4",
         ]
 
 
@@ -293,7 +396,10 @@ class NewsSerializer(serializers.ModelSerializer):
             "text_uz",
             "link",
             "pub_date",
-            "views",
+            "views","pdflink1",
+            "pdflink2",
+            "pdflink3",
+            "pdflink4",
         ]
 
 

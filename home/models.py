@@ -4,6 +4,27 @@ from django.utils.translation import gettext_lazy as _
 
 from django.utils.text import slugify
 from django.urls import reverse
+
+class Korupsiya(models.Model):
+    title = models.CharField(max_length=255)
+    description = models.TextField(blank=True, null=True)
+    image = models.ImageField(upload_to='images/', blank=True, null=True)
+    pdf_file = models.FileField(upload_to='documents/', blank=True, null=True)
+    pdf_online_link = models.URLField(blank=True, null=True)
+    download_link = models.URLField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+    
+class VideoLink(models.Model):
+    image = models.ImageField(upload_to='images/', blank=True, null=True)
+    link = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.link
+
+
 class Application(models.Model):
     full_name = models.CharField(max_length=255)
     phone_number = models.CharField(max_length=20)
@@ -37,6 +58,9 @@ class UploadedFile(models.Model):
     def get_file_url(self, request):
         return request.build_absolute_uri(self.file.url)
 
+from django.db import models
+from django.utils.translation import gettext_lazy as _
+
 class Tenderlar(models.Model):
     STATUS_CHOICES = (
         ("Закупки", "Закупки"),
@@ -52,6 +76,18 @@ class Tenderlar(models.Model):
     text_en = models.TextField(_("Текст (English)"), default="Default Text")
     text_ru = models.TextField(_("Текст (Russian)"), default="Default Text")
     text_uz = models.TextField(_("Текст (Uzbek)"), default="Default Text")
+    pdflink1 = models.URLField(_("PDF ссылка 1"), blank=True, null=True)
+    pdflink2 = models.URLField(_("PDF ссылка 2"), blank=True, null=True)
+    pdflink3 = models.URLField(_("PDF ссылка 3"), blank=True, null=True)
+    pdflink4 = models.URLField(_("PDF ссылка 4"), blank=True, null=True)
+    pdflink5 = models.URLField(_("PDF ссылка 5"), blank=True, null=True)
+    pdflink6 = models.URLField(_("PDF ссылка 6"), blank=True, null=True)
+    pdflink7 = models.URLField(_("PDF ссылка 7"), blank=True, null=True)
+    pdflink8 = models.URLField(_("PDF ссылка 8"), blank=True, null=True)
+    pdflink9 = models.URLField(_("PDF ссылка 9"), blank=True, null=True)
+    pdflink10 = models.URLField(_("PDF ссылка 10"), blank=True, null=True)
+    pdflink11 = models.URLField(_("PDF ссылка 11"), blank=True, null=True)
+    pdflink12 = models.URLField(_("PDF ссылка 12"), blank=True, null=True)
     start_date = models.DateField(_("Начало даты"), blank=True, null=True)
     end_date = models.DateField(_("Конец тендера"), blank=True, null=True)
     views = models.PositiveIntegerField(_("Просмотры"), default=0)
@@ -67,10 +103,15 @@ class Tenderlar(models.Model):
         return self.title_uz
 
 
+
 class ElektronHukumatDoirasidaAmalgaOshirilayotganLoyihalar(models.Model):
     text_en = models.TextField(_("Text (English)"), default="Default Text")
     text_ru = models.TextField(_("Text (Russian)"), default="Default Text")
     text_uz = models.TextField(_("Text (Uzbek)"), default="Default Text")
+    pdflink1 = models.URLField(_("PDF ссылка 1"), blank=True, null=True)
+    pdflink2 = models.URLField(_("PDF ссылка 2"), blank=True, null=True)
+    pdflink3 = models.URLField(_("PDF ссылка 3"), blank=True, null=True)
+    pdflink4 = models.URLField(_("PDF ссылка 4"), blank=True, null=True)
 
     class Meta:
         verbose_name = _("Elektron Hukumat Doirasida Amalga Oshirilayotgan Loyihalar")
@@ -86,6 +127,11 @@ class DavlatTashkilotlari(models.Model):
     text_en = models.TextField(_("Text (English)"), default="Default Text")
     text_ru = models.TextField(_("Text (Russian)"), default="Default Text")
     text_uz = models.TextField(_("Text (Uzbek)"), default="Default Text")
+    pdflink1 = models.URLField(_("PDF ссылка 1"), blank=True, null=True)
+    pdflink2 = models.URLField(_("PDF ссылка 2"), blank=True, null=True)
+    pdflink3 = models.URLField(_("PDF ссылка 3"), blank=True, null=True)
+    pdflink4 = models.URLField(_("PDF ссылка 4"), blank=True, null=True)
+
 
     class Meta:
         verbose_name = _("Davlat Tashkilotlari")
@@ -99,6 +145,11 @@ class DavlatRamzlar(models.Model):
     text_en = models.TextField(_("Text (English)"), default="Default Text")
     text_ru = models.TextField(_("Text (Russian)"), default="Default Text")
     text_uz = models.TextField(_("Text (Uzbek)"), default="Default Text")
+    pdflink1 = models.URLField(_("PDF ссылка 1"), blank=True, null=True)
+    pdflink2 = models.URLField(_("PDF ссылка 2"), blank=True, null=True)
+    pdflink3 = models.URLField(_("PDF ссылка 3"), blank=True, null=True)
+    pdflink4 = models.URLField(_("PDF ссылка 4"), blank=True, null=True)
+
 
     class Meta:
         verbose_name = _("Davlat Ramzlar")
@@ -112,6 +163,7 @@ class SaytHaritasi(models.Model):
     text_en = models.TextField(_("Text (English)"), default="Default Text")
     text_ru = models.TextField(_("Text (Russian)"), default="Default Text")
     text_uz = models.TextField(_("Text (Uzbek)"), default="Default Text")
+    
 
     class Meta:
         verbose_name = _("Sayt Haritasi")
@@ -125,6 +177,11 @@ class HarakatlarStrategiyasi(models.Model):
     text_en = models.TextField(_("Text (English)"), default="Default Text")
     text_ru = models.TextField(_("Text (Russian)"), default="Default Text")
     text_uz = models.TextField(_("Text (Uzbek)"), default="Default Text")
+    pdflink1 = models.URLField(_("PDF ссылка 1"), blank=True, null=True)
+    pdflink2 = models.URLField(_("PDF ссылка 2"), blank=True, null=True)
+    pdflink3 = models.URLField(_("PDF ссылка 3"), blank=True, null=True)
+    pdflink4 = models.URLField(_("PDF ссылка 4"), blank=True, null=True)
+
 
     class Meta:
         verbose_name = _("Harakatlar Strategiyasi")
@@ -138,6 +195,11 @@ class QonunchilikBazasi(models.Model):
     text_en = models.TextField(_("Text (English)"), default="Default Text")
     text_ru = models.TextField(_("Text (Russian)"), default="Default Text")
     text_uz = models.TextField(_("Text (Uzbek)"), default="Default Text")
+    pdflink1 = models.URLField(_("PDF ссылка 1"), blank=True, null=True)
+    pdflink2 = models.URLField(_("PDF ссылка 2"), blank=True, null=True)
+    pdflink3 = models.URLField(_("PDF ссылка 3"), blank=True, null=True)
+    pdflink4 = models.URLField(_("PDF ссылка 4"), blank=True, null=True)
+
 
     class Meta:
         verbose_name = _("Qonunchilik Bazasi")
@@ -151,6 +213,11 @@ class BoshIshJoylari(models.Model):
     text_en = models.TextField(_("Text (English)"), default="Default Text")
     text_ru = models.TextField(_("Text (Russian)"), default="Default Text")
     text_uz = models.TextField(_("Text (Uzbek)"), default="Default Text")
+    pdflink1 = models.URLField(_("PDF ссылка 1"), blank=True, null=True)
+    pdflink2 = models.URLField(_("PDF ссылка 2"), blank=True, null=True)
+    pdflink3 = models.URLField(_("PDF ссылка 3"), blank=True, null=True)
+    pdflink4 = models.URLField(_("PDF ссылка 4"), blank=True, null=True)
+
 
     class Meta:
         verbose_name = _("Bosh Ish Joylari")
@@ -164,6 +231,11 @@ class OchiqMalumotlar(models.Model):
     text_en = models.TextField(_("Text (English)"), default="Default Text")
     text_ru = models.TextField(_("Text (Russian)"), default="Default Text")
     text_uz = models.TextField(_("Text (Uzbek)"), default="Default Text")
+    pdflink1 = models.URLField(_("PDF ссылка 1"), blank=True, null=True)
+    pdflink2 = models.URLField(_("PDF ссылка 2"), blank=True, null=True)
+    pdflink3 = models.URLField(_("PDF ссылка 3"), blank=True, null=True)
+    pdflink4 = models.URLField(_("PDF ссылка 4"), blank=True, null=True)
+    
 
     class Meta:
         verbose_name = _("Ochiq Malumotlar")
@@ -177,6 +249,10 @@ class KopKelganSavollargaJavoblar(models.Model):
     text_en = models.TextField(_("Text (English)"), default="Default Text")
     text_ru = models.TextField(_("Text (Russian)"), default="Default Text")
     text_uz = models.TextField(_("Text (Uzbek)"), default="Default Text")
+    pdflink1 = models.URLField(_("PDF ссылка 1"), blank=True, null=True)
+    pdflink2 = models.URLField(_("PDF ссылка 2"), blank=True, null=True)
+    pdflink3 = models.URLField(_("PDF ссылка 3"), blank=True, null=True)
+    pdflink4 = models.URLField(_("PDF ссылка 4"), blank=True, null=True)
 
     class Meta:
         verbose_name = _("Kop Kelgan Savollarga Javoblar")
@@ -190,6 +266,10 @@ class MurojaatlarniKoribchiqishTartibi(models.Model):
     text_en = models.TextField(_("Text (English)"), default="Default Text")
     text_ru = models.TextField(_("Text (Russian)"), default="Default Text")
     text_uz = models.TextField(_("Text (Uzbek)"), default="Default Text")
+    pdflink1 = models.URLField(_("PDF ссылка 1"), blank=True, null=True)
+    pdflink2 = models.URLField(_("PDF ссылка 2"), blank=True, null=True)
+    pdflink3 = models.URLField(_("PDF ссылка 3"), blank=True, null=True)
+    pdflink4 = models.URLField(_("PDF ссылка 4"), blank=True, null=True)
 
     class Meta:
         verbose_name = _("Murojaatlarni Koribchiqish Tartibi")
@@ -203,6 +283,10 @@ class MurojaatlarStatistikasi(models.Model):
     text_en = models.TextField(_("Text (English)"), default="Default Text")
     text_ru = models.TextField(_("Text (Russian)"), default="Default Text")
     text_uz = models.TextField(_("Text (Uzbek)"), default="Default Text")
+    pdflink1 = models.URLField(_("PDF ссылка 1"), blank=True, null=True)
+    pdflink2 = models.URLField(_("PDF ссылка 2"), blank=True, null=True)
+    pdflink3 = models.URLField(_("PDF ссылка 3"), blank=True, null=True)
+    pdflink4 = models.URLField(_("PDF ссылка 4"), blank=True, null=True)
 
     class Meta:
         verbose_name = _("Murojaatlar Statistikasi")
@@ -216,6 +300,10 @@ class IshonchTelefoniReglamenti(models.Model):
     text_en = models.TextField(_("Text (English)"), default="Default Text")
     text_ru = models.TextField(_("Text (Russian)"), default="Default Text")
     text_uz = models.TextField(_("Text (Uzbek)"), default="Default Text")
+    pdflink1 = models.URLField(_("PDF ссылка 1"), blank=True, null=True)
+    pdflink2 = models.URLField(_("PDF ссылка 2"), blank=True, null=True)
+    pdflink3 = models.URLField(_("PDF ссылка 3"), blank=True, null=True)
+    pdflink4 = models.URLField(_("PDF ссылка 4"), blank=True, null=True)
 
     class Meta:
         verbose_name = _("Ishonch Telefoni Reglamenti")
@@ -229,6 +317,10 @@ class LogistikaSamaradorligiIndeksiBoyichaOchiqMalumotlar(models.Model):
     text_en = models.TextField(_("Text (English)"), default="Default Text")
     text_ru = models.TextField(_("Text (Russian)"), default="Default Text")
     text_uz = models.TextField(_("Text (Uzbek)"), default="Default Text")
+    pdflink1 = models.URLField(_("PDF ссылка 1"), blank=True, null=True)
+    pdflink2 = models.URLField(_("PDF ссылка 2"), blank=True, null=True)
+    pdflink3 = models.URLField(_("PDF ссылка 3"), blank=True, null=True)
+    pdflink4 = models.URLField(_("PDF ссылка 4"), blank=True, null=True)
 
     class Meta:
         verbose_name = _("Logistika Samaradorligi Indeksi Boyicha Ochiq Malumotlar")
@@ -244,6 +336,10 @@ class YoshlarSiyosati(models.Model):
     text_en = models.TextField(_("Text (English)"), default="Default Text")
     text_ru = models.TextField(_("Text (Russian)"), default="Default Text")
     text_uz = models.TextField(_("Text (Uzbek)"), default="Default Text")
+    pdflink1 = models.URLField(_("PDF ссылка 1"), blank=True, null=True)
+    pdflink2 = models.URLField(_("PDF ссылка 2"), blank=True, null=True)
+    pdflink3 = models.URLField(_("PDF ссылка 3"), blank=True, null=True)
+    pdflink4 = models.URLField(_("PDF ссылка 4"), blank=True, null=True)
 
     class Meta:
         verbose_name = _("Yoshlar Siyosati")
@@ -257,6 +353,10 @@ class YoshlarMarkaziYangiliklari(models.Model):
     text_en = models.TextField(_("Text (English)"), default="Default Text")
     text_ru = models.TextField(_("Text (Russian)"), default="Default Text")
     text_uz = models.TextField(_("Text (Uzbek)"), default="Default Text")
+    pdflink1 = models.URLField(_("PDF ссылка 1"), blank=True, null=True)
+    pdflink2 = models.URLField(_("PDF ссылка 2"), blank=True, null=True)
+    pdflink3 = models.URLField(_("PDF ссылка 3"), blank=True, null=True)
+    pdflink4 = models.URLField(_("PDF ссылка 4"), blank=True, null=True)
 
     class Meta:
         verbose_name = _("Yoshlar Markazi Yangiliklari")
@@ -270,6 +370,10 @@ class YoshlarSiyosatigaOidMeyoriyHuquqiyHujjatlar(models.Model):
     text_en = models.TextField(_("Text (English)"), default="Default Text")
     text_ru = models.TextField(_("Text (Russian)"), default="Default Text")
     text_uz = models.TextField(_("Text (Uzbek)"), default="Default Text")
+    pdflink1 = models.URLField(_("PDF ссылка 1"), blank=True, null=True)
+    pdflink2 = models.URLField(_("PDF ссылка 2"), blank=True, null=True)
+    pdflink3 = models.URLField(_("PDF ссылка 3"), blank=True, null=True)
+    pdflink4 = models.URLField(_("PDF ссылка 4"), blank=True, null=True)
 
     class Meta:
         verbose_name = _("Yoshlar Siyosatiga Oid Meyoriy Huquqiy Hujjatlar")
@@ -283,6 +387,10 @@ class UmumiyMalumotlar(models.Model):
     text_en = models.TextField(_("Text (English)"), default="Default Text")
     text_ru = models.TextField(_("Text (Russian)"), default="Default Text")
     text_uz = models.TextField(_("Text (Uzbek)"), default="Default Text")
+    pdflink1 = models.URLField(_("PDF ссылка 1"), blank=True, null=True)
+    pdflink2 = models.URLField(_("PDF ссылка 2"), blank=True, null=True)
+    pdflink3 = models.URLField(_("PDF ссылка 3"), blank=True, null=True)
+    pdflink4 = models.URLField(_("PDF ссылка 4"), blank=True, null=True)
 
     class Meta:
         verbose_name = _("Umumiy Malumotlar")
@@ -296,6 +404,10 @@ class GenderTenglikAsosiyInsonHuquqlaridanBiri(models.Model):
     text_en = models.TextField(_("Text (English)"), default="Default Text")
     text_ru = models.TextField(_("Text (Russian)"), default="Default Text")
     text_uz = models.TextField(_("Text (Uzbek)"), default="Default Text")
+    pdflink1 = models.URLField(_("PDF ссылка 1"), blank=True, null=True)
+    pdflink2 = models.URLField(_("PDF ссылка 2"), blank=True, null=True)
+    pdflink3 = models.URLField(_("PDF ссылка 3"), blank=True, null=True)
+    pdflink4 = models.URLField(_("PDF ссылка 4"), blank=True, null=True)
 
     class Meta:
         verbose_name = _("Gender Tenglik Asosiy Inson Huquqlaridan Biri")
@@ -309,6 +421,10 @@ class YurtimizdaGenderTenglikniTaminlashStrategiyasi(models.Model):
     text_en = models.TextField(_("Text (English)"), default="Default Text")
     text_ru = models.TextField(_("Text (Russian)"), default="Default Text")
     text_uz = models.TextField(_("Text (Uzbek)"), default="Default Text")
+    pdflink1 = models.URLField(_("PDF ссылка 1"), blank=True, null=True)
+    pdflink2 = models.URLField(_("PDF ссылка 2"), blank=True, null=True)
+    pdflink3 = models.URLField(_("PDF ссылка 3"), blank=True, null=True)
+    pdflink4 = models.URLField(_("PDF ссылка 4"), blank=True, null=True)
 
     class Meta:
         verbose_name = _("Yurtimizda Gender Tenglikni Taminlash Strategiyasi")
@@ -322,6 +438,10 @@ class MeyoriyHujjatlar(models.Model):
     text_en = models.TextField(_("Text (English)"), default="Default Text")
     text_ru = models.TextField(_("Text (Russian)"), default="Default Text")
     text_uz = models.TextField(_("Text (Uzbek)"), default="Default Text")
+    pdflink1 = models.URLField(_("PDF ссылка 1"), blank=True, null=True)
+    pdflink2 = models.URLField(_("PDF ссылка 2"), blank=True, null=True)
+    pdflink3 = models.URLField(_("PDF ссылка 3"), blank=True, null=True)
+    pdflink4 = models.URLField(_("PDF ссылка 4"), blank=True, null=True)
 
     class Meta:
         verbose_name = _("Meyoriy Hujjatlar")
@@ -335,6 +455,10 @@ class MeyorVazirlikdaGenderSiyosatiiyHujjatlar(models.Model):
     text_en = models.TextField(_("Text (English)"), default="Default Text")
     text_ru = models.TextField(_("Text (Russian)"), default="Default Text")
     text_uz = models.TextField(_("Text (Uzbek)"), default="Default Text")
+    pdflink1 = models.URLField(_("PDF ссылка 1"), blank=True, null=True)
+    pdflink2 = models.URLField(_("PDF ссылка 2"), blank=True, null=True)
+    pdflink3 = models.URLField(_("PDF ссылка 3"), blank=True, null=True)
+    pdflink4 = models.URLField(_("PDF ссылка 4"), blank=True, null=True)
 
     class Meta:
         verbose_name = _("Meyor Vazirlikda Gender Siyosatiiy Hujjatlar")
@@ -348,6 +472,10 @@ class VazirlikdaGenderSiyosati(models.Model):
     text_en = models.TextField(_("Text (English)"), default="Default Text")
     text_ru = models.TextField(_("Text (Russian)"), default="Default Text")
     text_uz = models.TextField(_("Text (Uzbek)"), default="Default Text")
+    pdflink1 = models.URLField(_("PDF ссылка 1"), blank=True, null=True)
+    pdflink2 = models.URLField(_("PDF ссылка 2"), blank=True, null=True)
+    pdflink3 = models.URLField(_("PDF ссылка 3"), blank=True, null=True)
+    pdflink4 = models.URLField(_("PDF ссылка 4"), blank=True, null=True)
 
     class Meta:
         verbose_name = _("Vazirlikda Gender Siyosati")
@@ -361,6 +489,10 @@ class Korsatkichlar(models.Model):
     text_en = models.TextField(_("Text (English)"), default="Default Text")
     text_ru = models.TextField(_("Text (Russian)"), default="Default Text")
     text_uz = models.TextField(_("Text (Uzbek)"), default="Default Text")
+    pdflink1 = models.URLField(_("PDF ссылка 1"), blank=True, null=True)
+    pdflink2 = models.URLField(_("PDF ссылка 2"), blank=True, null=True)
+    pdflink3 = models.URLField(_("PDF ссылка 3"), blank=True, null=True)
+    pdflink4 = models.URLField(_("PDF ссылка 4"), blank=True, null=True)
 
     class Meta:
         verbose_name = _("Korsatkichlar")
@@ -374,6 +506,10 @@ class GenderTenglikkaOidMeyoriyHujjatlarniIshlabChiqish(models.Model):
     text_en = models.TextField(_("Text (English)"), default="Default Text")
     text_ru = models.TextField(_("Text (Russian)"), default="Default Text")
     text_uz = models.TextField(_("Text (Uzbek)"), default="Default Text")
+    pdflink1 = models.URLField(_("PDF ссылка 1"), blank=True, null=True)
+    pdflink2 = models.URLField(_("PDF ссылка 2"), blank=True, null=True)
+    pdflink3 = models.URLField(_("PDF ссылка 3"), blank=True, null=True)
+    pdflink4 = models.URLField(_("PDF ссылка 4"), blank=True, null=True)
 
     class Meta:
         verbose_name = _("Gender Tenglikka Oid Meyoriy Hujjatlarni Ishlab Chiqish")
@@ -431,6 +567,10 @@ class InteraktivXizmat(models.Model):
     )
     url = models.URLField(_("URL"))
     views = models.IntegerField(_("Views"), default=0)
+    pdflink1 = models.URLField(_("PDF ссылка 1"), blank=True, null=True)
+    pdflink2 = models.URLField(_("PDF ссылка 2"), blank=True, null=True)
+    pdflink3 = models.URLField(_("PDF ссылка 3"), blank=True, null=True)
+    pdflink4 = models.URLField(_("PDF ссылка 4"), blank=True, null=True)
 
     def __str__(self):
         return self.title_en
@@ -514,6 +654,10 @@ class News(models.Model):
     )
     pub_date = models.DateTimeField(_("Publication Date"), auto_now_add=True)
     views = models.PositiveIntegerField(_("Views"), default=0)
+    pdflink1 = models.URLField(_("PDF ссылка 1"), blank=True, null=True)
+    pdflink2 = models.URLField(_("PDF ссылка 2"), blank=True, null=True)
+    pdflink3 = models.URLField(_("PDF ссылка 3"), blank=True, null=True)
+    pdflink4 = models.URLField(_("PDF ссылка 4"), blank=True, null=True)
 
     class Meta:
         verbose_name = _("Yangiliklar")
@@ -571,6 +715,10 @@ class Vazirlik(models.Model):
     text_en = models.TextField(_("Batafsil malumot (English)"), default="Default Text")
     text_ru = models.TextField(_("Batafsil malumot (Russian)"), default="Default Text")
     text_uz = models.TextField(_("Batafsil malumot (Uzbek)"), default="Default Text")
+    pdflink1 = models.URLField(_("PDF ссылка 1"), blank=True, null=True)
+    pdflink2 = models.URLField(_("PDF ссылка 2"), blank=True, null=True)
+    pdflink3 = models.URLField(_("PDF ссылка 3"), blank=True, null=True)
+    pdflink4 = models.URLField(_("PDF ссылка 4"), blank=True, null=True)
 
     def __str__(self):
         return self.title_en

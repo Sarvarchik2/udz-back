@@ -27,15 +27,17 @@ from home.views import (
     HarakatlarStrategiyasiViewSet,
     QonunchilikBazasiViewSet,
     BoshIshJoylariViewSet,
+    VideoLinkViewSet,
     OchiqMalumotlarViewSet,
     KopKelganSavollargaJavoblarViewSet,
 )
 
-
+from home.views import KorupsiyaListView
 
 from home.views import ApplicationViewSet
 router = DefaultRouter()
 router.register(r'applications', ApplicationViewSet)
+router.register(r'videoLink', VideoLinkViewSet)
 router.register(r"sayt-haritasi", SaytHaritasiViewSet)
 router.register(r"harakatlar-strategiyasi", HarakatlarStrategiyasiViewSet)
 router.register(r"qonunchilik-bazasi", QonunchilikBazasiViewSet)
@@ -88,7 +90,6 @@ router.register(r"interaktiv", views.InteraktivXizmatViewSet)
 
 urlpatterns = [
    path('files/<slug:slug>/', FileDetailView.as_view(), name='file_detail'),
-
     path("", include(router.urls)),
     path(
         "interaktiv-xizmatlar/",
@@ -105,6 +106,8 @@ urlpatterns = [
     path(
         "news/<int:pk>/", views.NewsDetailView.as_view(), name="news-detail"
     ),  # Заменен NewsDetailView на views.NewsDetailView.as_view()
+    path('korupsiya/', KorupsiyaListView.as_view(), name='korupsiya-list'),
+
     path(
         "interaktiv/<int:pk>/increment_views/",
         views.InteraktivXizmatViewSet.as_view({"post": "increment_views"}),
@@ -117,6 +120,7 @@ urlpatterns = [
         name="create-application",
     ),
     path("admin/", admin.site.urls),
+    path('grappelli/', include('grappelli.urls')),  #
 ]
 
 if settings.DEBUG:
